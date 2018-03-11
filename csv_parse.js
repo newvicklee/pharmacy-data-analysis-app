@@ -52,13 +52,16 @@ var format_date = function(input) {
     return output;
 };
 
-var searchPattern = function(array_of_arrays) {
+var searchPattern = function(array_of_arrays, final_report) {
     /** 
      * Searches the 'sig' column (second column) to find whether its contents match the regex pattern named 'regexPattern'.
      * If there is a match, it checks whether the patient name and sig have already been added into the final_report array by checking the
      * not_duplicats() function
      *
      * @param {Array} array_of_arrays has been parsed from the csv file
+     * @param {array} final_report is the array that will contain the 
+     *
+     *
      */
     array_of_arrays.forEach(function(row) {
         let sig = row[1];
@@ -84,20 +87,27 @@ var searchPattern = function(array_of_arrays) {
             }
         };
     });
+    return final_report;
 };
 
 var parse_array = function(array_of_arrays, parsed_content_array) {
     /**
-     * Takes in the 2-D array from the CSV file of patient information, and parses to return only columns 25 and 13 which are patient name and SIG
+     * Takes in the 2-D array from the CSV file of patient information, and parses only columns 25 and 13 which are patient name and SIG which are passed to a 
+     * new array called parsed_content
      *
      * @param {Array} array_of_arrays is the 2-D array that contains all patient information from the CSV
      * @param {Array} parsed_Content_array is the array that will store columns 25 and 13 into a single array, resulting in a 2-D array
      *
+     * @returns {array} Returns parsed_content_array
+     *
      */
+    debugger;
     array_of_arrays.forEach(function(row) {
         let new_row = [row[25], row[13]];
         parsed_content_array.push(new_row);
     });
+
+    return parsed_content_array;
 };
 
 var sort_by_date = function(array_of_arrays) {
@@ -122,9 +132,9 @@ fs.readFile('hm_batch.csv', function (err, fileData) {
          * column 13 = SIG
          * column 25 = patient name
          */
-        parse_array(rows, parsed_content);
-        searchPattern(parsed_content);
-        sort_by_date(final_report);
+        var parsed_content_done = parse_array(rows, parsed_content);
+        var final_report_done = searchPattern(parsed_content_done, final_report);
+        sort_by_date(final_report_done);
         let file = fs.createWriteStream('output.csv');
         final_report.forEach(function(row) {
             file.write(row.join(', ') + '\n');
