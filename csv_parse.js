@@ -14,7 +14,7 @@ var parsed_content = [];
 var check_duplicates_array = [];
 var final_report = [];
 
-var is_duplicate = function(data) {
+var is_duplicate = function(data, check_duplicates_array) {
     /* *
      * Checks whether the @param 'data' is already included in our parsed_content and check_duplicates_array (which should have the same elements)
      * @param {Array} data is an array with pt_name as first element and month as second element
@@ -52,14 +52,17 @@ var format_date = function(input) {
     return output;
 };
 
-var searchPattern = function(array_of_arrays, final_report) {
+var searchPattern = function(regexPattern, array_of_arrays, final_report) {
     /** 
      * Searches the 'sig' column (second column) to find whether its contents match the regex pattern named 'regexPattern'.
      * If there is a match, it checks whether the patient name and sig have already been added into the final_report array by checking the
      * not_duplicats() function
      *
+     * @param {regex} regexPattern is a regular expression in the format of RegExp("-" + month + "[0-9]{1,2}", 'i') 
      * @param {Array} array_of_arrays has been parsed from the csv file
-     * @param {array} final_report is the array that will contain the 
+     * @param {array} final_report is the array that will contain the end result
+     *
+     * @returns {array} final_report which is a 2-D array where each element is an array that contains the matched patient name and SIG
      *
      *
      */
@@ -81,7 +84,7 @@ var searchPattern = function(array_of_arrays, final_report) {
                 
             let pt_name = row[0];
             data = [pt_name, due_date];
-            if (is_duplicate(data) === false) {
+            if (is_duplicate(data, check_duplicates_array) === false) {
                 final_report.push(data);
                 check_duplicates_array.push(data);
             }
@@ -133,7 +136,7 @@ fs.readFile('hm_batch.csv', function (err, fileData) {
          * column 25 = patient name
          */
         var parsed_content_done = parse_array(rows, parsed_content);
-        var final_report_done = searchPattern(parsed_content_done, final_report);
+        var final_report_done = searchPattern(regexPattern, parsed_content_done, final_report);
         sort_by_date(final_report_done);
         let file = fs.createWriteStream('output.csv');
         final_report.forEach(function(row) {
@@ -142,3 +145,7 @@ fs.readFile('hm_batch.csv', function (err, fileData) {
     });
 });
 
+
+module.exports.parse_array = parse_array;
+module.exports.searchPattern = searchPattern;
+module.exports.is_duplicate = is_duplicate;
