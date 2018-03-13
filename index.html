@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+
+      <title>Hello World!</title>
+    </head>
+    <body>
+
+
+    <!-- START Sidebar -->
+    <div class="sidebar">
+
+        <header class="sidebar-header">
+            <h1 class="sidebar-title">Pharmacy Data Cruncher</h1>
+        </header>
+
+        <div class="nav-item">
+            <h5 class="nav-category">
+                <svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-menu"></use></svg>
+                Menu
+            </h5>
+            <button type="button" id="button-parse" data-section="parse" class="nav-button">Refills Due Report</button>
+        </div>
+
+    </div>
+    <!-- END Sidebar -->
+
+    <!-- START Main -->
+    <main class="content is-shown">
+
+        <!-- Section for Refills Report -->
+        <section id="refills-report-section" class="section is-shown">
+            <header class="section-header">
+                <div class="section-wrapper">
+                    <h1>Refills Due Report</h1>
+                    <p>Paragraph information about how to use this area</p>
+                </div>
+            </header>
+            <div class="section-content">
+                <div class="section-content-wrapper">
+                    <div class="section-box is-open">
+                        <p>1. Enter the month</p>
+                        <input type="text">
+                        <p>2. Open the CSV file</p>
+                        <div class="button-controls">
+                            <button class="dialog-button" id="open-file-manager">Open</button>
+                        </div>
+                        <h5>3. Analyze</h5>
+                        <div class="button-controls">
+                            <button class="dialog-button button-blue" id="refills-parse">Analyze</button>
+                        </div>
+
+                        <p>4. Choose the location you would like to save the new file</p>
+                        <div class="button-controls">
+                            <button class="dialog-button" id="save-file-manager">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END section for refills report -->
+
+
+    </main>
+    <!-- END Main -->
+
+
+
+    </body>
+  </html>

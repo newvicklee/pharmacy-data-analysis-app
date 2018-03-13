@@ -1,0 +1,217 @@
+$color-bg: hsl(0,0%,96%);
+$color-border: hsl(0,0%,88%);
+$color-font: hsl(0,0%,22%);
+$color-blue: hsl(222, 53%, 50%);
+
+
+
+
+
+html {
+    height: 100%;
+    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+    line-height: 1.5;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+main, div {
+    display: block;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+};
+
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h2, h3, h4 {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: hsl(0, 0%, 44%);
+    border-right: 1px solid hsl(0,0%,88%);
+    background-color: hsl(0,0%,96%);
+}
+
+.sidebar-header {
+    position: relative;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid hsl(0,0%,88%);
+}
+
+.sidebar-title {
+    text-transform: uppercase;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.nav-item {
+    padding: .5em 0;
+}
+
+.nav-category {
+    margin: .2em 0;
+    padding-left: 2rem;
+    font-size: 11px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.nav-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    margin-right: .25rem;
+    padding-top: 2px; // make it align with menu subtitle
+}
+
+svg {
+    fill: currentColor;
+}
+
+.is-selected {
+    color: #fff;
+}
+
+.nav-button {
+    display: block;
+    width: 100%;
+    padding: .3rem;
+    padding-left: calc(2rem + 16px + .5rem);
+    line-height: 2;
+    text-align: left;
+    font: inherit;
+    font-size: 13px;
+    color: inherit;
+    border: none;
+    background-color: transparent;
+    cursor: default;
+    outline: none;
+
+    &:hover {
+        background-color: hsla(0,0%,0%,.1);
+    }
+}
+
+.is-shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.content {
+    flex: 1 1 0;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: black;;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: visibility 0s .12s linear , opacity .12s ease-in, transform .12s ease-in;
+
+    p {
+        color: $color-font;
+    }
+}
+
+.section.is-shown {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: visibility 0s 0s linear , opacity .36s ease-out, transform .36s ease-out;
+}
+
+.section-wrapper {
+    position: relative;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 4rem 2rem 1rem 2rem;
+    border-bottom: 1px solid $color-border;
+}
+
+.section-content {
+    margin-top: 2rem;
+}
+
+.section-content-wrapper {
+    position: relative;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-box {
+    display: none;
+    position: relative;
+    padding: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    border-radius: 6px;
+    border: 1px solid $color-border;;
+    //background-color: $color-bg;
+
+    h5 {
+	font-size: 1em;
+	margin-bottom: .6em;
+    }
+}
+
+.is-open {
+    display: block;
+}
+
+.button-controls {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-button {
+    align-self: flex-start;
+    margin-right: 1em;
+    border: 2px solid;
+    border-radius: 4px;
+    font: inherit;
+    font-size: 1.2em;
+    padding: .4em 1.2em;
+    color: inherit;
+    background-color: transparent;
+
+    &:active {
+        border-color: $color-border;
+    }
+}
+
+.button-blue {
+    color: $color-blue;
+}
+

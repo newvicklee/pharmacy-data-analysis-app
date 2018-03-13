@@ -1,11 +1,30 @@
 {
   "scripts": {
-    "test": "jest"
+    "start": "electron .",
+    "test": "jest",
+    "scss": "node-sass --output-style compressed -o assets/css assets/scss",
+    "scsswatch": "node-sass -watch assets/scss --output-style compressed -o assets/css assets/scss"
   },
   "devDependencies": {
-    "jest": "^22.4.2"
+    "electron": "^1.8.3",
+    "jest": "^22.4.2",
+    "node-sass": "^4.8.1"
   },
   "dependencies": {
     "csv-parse": "^2.0.4"
-  }
+  },
+  "name": "pharmacy-data-analysis-app",
+  "version": "0.1.0",
+  "description": "Electron App to analyze data from pharmacy software Kroll",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newvicklee/pharmacy-data-analysis-app.git"
+  },
+  "author": "newvicklee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/newvicklee/pharmacy-data-analysis-app/issues"
+  },
+  "homepage": "https://github.com/newvicklee/pharmacy-data-analysis-app#readme"
 }
