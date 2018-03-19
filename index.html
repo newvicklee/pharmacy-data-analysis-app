@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="assets/css/styles.css">
 
 
-      <title>Hello World!</title>
+      <title>Pharmalze</title>
     </head>
     <body>
 
@@ -15,7 +15,7 @@
     <div class="sidebar">
 
         <header class="sidebar-header">
-            <h1 class="sidebar-title">Pharmacy Data Cruncher</h1>
+            <h1 class="sidebar-title">Pharmalyze</h1>
         </header>
 
         <div class="nav-item">
@@ -44,20 +44,12 @@
                 <div class="section-content-wrapper">
                     <div class="section-box is-open">
                         <p>1. Enter the month</p>
-                        <input type="text">
-                        <p>2. Open the CSV file</p>
+                        <input type="text" id="month">
+                        <p>2. Open the CSV file you would like to analyze</p>
                         <div class="button-controls">
-                            <button class="dialog-button" id="open-file-manager">Open</button>
-                        </div>
-                        <h5>3. Analyze</h5>
-                        <div class="button-controls">
-                            <button class="dialog-button button-blue" id="refills-parse">Analyze</button>
+                            <button class="dialog-button button-blue" id="open-file-manager">Open</button>
                         </div>
 
-                        <p>4. Choose the location you would like to save the new file</p>
-                        <div class="button-controls">
-                            <button class="dialog-button" id="save-file-manager">Save</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -68,6 +60,9 @@
     </main>
     <!-- END Main -->
 
+    <script>
+        require('./csv_parse.js');
+    </script>
 
 
     </body>

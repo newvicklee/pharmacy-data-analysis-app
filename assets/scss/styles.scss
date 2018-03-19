@@ -1,7 +1,6 @@
-$color-bg: hsl(0,0%,96%);
-$color-border: hsl(0,0%,88%);
-$color-font: hsl(0,0%,22%);
-$color-blue: hsl(222, 53%, 50%);
+$color-border: #e0e0e0;
+$color-font: #383838;
+$color-blue: #3c64c3;
 
 
 
@@ -70,7 +69,7 @@ h2, h3, h4 {
 .nav-category {
     margin: .2em 0;
     padding-left: 2rem;
-    font-size: 11px;
+    font-size: 17px;
     font-weight: normal;
     text-transform: uppercase;
 }
@@ -99,7 +98,7 @@ svg {
     line-height: 2;
     text-align: left;
     font: inherit;
-    font-size: 13px;
+    font-size: 14px;
     color: inherit;
     border: none;
     background-color: transparent;

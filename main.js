@@ -5,6 +5,9 @@ const url = require('url');
 let win;
 
 function createWindow() {
+
+    loadScripts();
+
     win = new BrowserWindow({width: 800, height: 600});
 
     win.loadURL(url.format({
@@ -14,6 +17,7 @@ function createWindow() {
     }))
 };
 
+
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
@@ -21,3 +25,6 @@ app.on('window-all-closed', () => {
 });
 
 
+function loadScripts () {
+    require('./csv_parse.js');
+};

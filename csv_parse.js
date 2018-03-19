@@ -1,14 +1,54 @@
 const fs = require('fs');
 const parse = require('csv-parse');
+const dialog = require('electron').remote.dialog; 
+const app = require('electron').remote.app;
 
+let openFile = document.getElementById('open-file-manager');
 
+openFile.addEventListener('click', function() {
+    dialog.showOpenDialog((fileNameArray) => {
 
-let month = "NOV";
+        if(fileNameArray === undefined) {
+            console.log('No file selected');
+            return;
+        };
 
-let regexPattern = new RegExp("-" + month + "[0-9]{1,2}", 'i');
+        let fileName = fileNameArray[0];
 
-// column 13 = SIG
-// column 25 = patient name
+        fs.readFile(fileName, function (err, fileData) {
+            if(err) {
+                alert("An error ocurred reading the file :" + err.message);
+            };
+
+            parse(fileData, {columns: null, trim: true}, function(err, rows) {
+                /*
+                 * rows is an array of arrays that is passed to this callback
+                 * column 13 = SIG
+                 * column 25 = patient name
+                 */
+                let month = document.getElementById('month').value;
+                let regexPattern = new RegExp("-" + month + "[0-9]{1,2}", 'i');
+
+                var parsed_content_done = parse_array(rows, parsed_content);
+                var final_report_done = searchPattern(regexPattern, parsed_content_done, final_report);
+                sort_by_date(final_report_done);
+
+                let downloadFolderPath = app.getPath('downloads');
+
+                let file = fs.createWriteStream(downloadFolderPath + '/refills_due.csv');
+                final_report.forEach(function(row) {
+                    file.write(row.join(', ') + '\n');
+                });
+                let myNotifcation = new window.Notification(notification.title, notification.body);
+            });
+        });
+    });
+});
+
+const notification = {
+    title: 'Pharmalyze Message',
+    body: 'Your refills report has been generated in your Downloads folder'
+};
 
 var parsed_content = [];
 var check_duplicates_array = [];
@@ -104,7 +144,6 @@ var parse_array = function(array_of_arrays, parsed_content_array) {
      * @returns {array} Returns parsed_content_array
      *
      */
-    debugger;
     array_of_arrays.forEach(function(row) {
         let new_row = [row[25], row[13]];
         parsed_content_array.push(new_row);
@@ -128,22 +167,6 @@ var sort_by_date = function(array_of_arrays) {
 };
 
 
-fs.readFile('hm_batch.csv', function (err, fileData) {
-    parse(fileData, {columns: null, trim: true}, function(err, rows) {
-        /*
-         * rows is an array of arrays that is passed to this callback
-         * column 13 = SIG
-         * column 25 = patient name
-         */
-        var parsed_content_done = parse_array(rows, parsed_content);
-        var final_report_done = searchPattern(regexPattern, parsed_content_done, final_report);
-        sort_by_date(final_report_done);
-        let file = fs.createWriteStream('output.csv');
-        final_report.forEach(function(row) {
-            file.write(row.join(', ') + '\n');
-        });
-    });
-});
 
 
 module.exports.parse_array = parse_array;
