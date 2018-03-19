@@ -38,17 +38,22 @@ openFile.addEventListener('click', function() {
                 let file = fs.createWriteStream(downloadFolderPath + '/refills_due.csv');
                 final_report.forEach(function(row) {
                     file.write(row.join(', ') + '\n');
-                });
-                let myNotifcation = new window.Notification(notification.title, notification.body);
+                })
+                cleanup();
             });
         });
     });
 });
 
-const notification = {
-    title: 'Pharmalyze Message',
-    body: 'Your refills report has been generated in your Downloads folder'
+
+
+function cleanup() {
+    document.getElementById('month').value = '';
+    let myNotification = new Notification('Pharmalyze Message', {
+        body: 'Your refills report has been generated in your Downloads folder'
+    })
 };
+    
 
 var parsed_content = [];
 var check_duplicates_array = [];
