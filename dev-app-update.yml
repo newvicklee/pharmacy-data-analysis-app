@@ -1,5 +1,0 @@
-appId: pharmalyze
-publish:
-        provider: github
-        owner: newvicklee
-        repo: pharmacy-data-analysis-app

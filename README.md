@@ -5,7 +5,7 @@ Pharmalyze is an app to help analyze data from the pharmacy software Kroll.
 
 ### Download
 
-You can download from the GitHub repository [releases](https://github.com/pharmacy-data-analysis-app/releases) page.
+You can download from the GitHub repository [releases](https://github.com/newvicklee/pharmacy-data-analysis-app/releases) page.
 
 
 ### Prerequisites
