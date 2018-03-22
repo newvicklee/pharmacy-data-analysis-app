@@ -1,7 +1,8 @@
 const fs = require('fs');
 const parse = require('csv-parse');
-const dialog = require('electron').remote.dialog; 
-const app = require('electron').remote.app;
+const remote = require('electron').remote;
+const dialog = remote.require('dialog');
+const app = remote.require('app');
 
 let openFile = document.getElementById('open-file-manager');
 

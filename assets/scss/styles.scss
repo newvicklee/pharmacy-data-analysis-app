@@ -214,3 +214,36 @@ svg {
     color: $color-blue;
 }
 
+.nav-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-top: 1px solid $color-border;
+  text-align: center;
+}
+
+
+.nav-footer-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: .75rem;
+  line-height: 2;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: default;
+  outline: none;
+  text-align: center;
+}
+.nav-footer-button:focus {
+  color: var(--color-strong);
+}
+
+
